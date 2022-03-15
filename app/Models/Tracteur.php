@@ -14,4 +14,14 @@ class Tracteur extends Model
         'immatriculation',
         'type',
     ];
+
+    public function chauffeurs()
+    {
+        return $this->hasMany(Chauffeur::class);
+    }
+
+    public function carburants()
+    {
+        $this->hasMany(Carburant::class);
+    }
 }

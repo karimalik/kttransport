@@ -48,12 +48,12 @@
 
                     <li class="label">Apps</li>
                     <li><a href="{{ route('tracteurs.index') }}"><i class="ti-truck"></i> Tracteurs</a></li>
-                    <li><a href="#"><i class="ti-user"></i> Chauffeurs</a></li>
-                    <li><a href="#"><i class="ti-brush-alt"></i> Carburants</a></li>
+                    <li><a href="{{ route('chauffeurs.index') }}"><i class="ti-user"></i> Chauffeurs</a></li>
+                    <li><a href=" {{ route('carburants.index') }} "><i class="ti-brush-alt"></i> Carburants</a></li>
                     <li><a href="#"><i class="ti-file"></i> Activites</a></li>
                     <li><a href="#"><i class="ti-settings"></i> Pannes</a></li>
                     <li><a href="#"><i class="ti-shopping-cart"></i> Achats Pieces</a></li>
-                    <li><a href="#"><i class="ti-search"></i> Recherche</a></li>
+                    <li><a href="{{ route('recherche.index') }}"><i class="ti-search"></i> Recherche</a></li>
                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="ti-power-off"></i> Deconnexion</a>
                     </li>

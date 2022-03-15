@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chauffeurs', function (Blueprint $table) {
+        Schema::create('tracteurs', function (Blueprint $table) {
             $table->id();
-            $table->string('nom')->nullable();
-            $table->string('prenom')->nullable();
-            $table->string('numeroCNI')->nullable();
-            $table->string('telephone')->nullable();
-            // $table->foreignId('tracteur_id')->constrained()->onDelete('cascade');
+            $table->string('marque')->nullable();
+            $table->string('immatriculation')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chauffeurs');
+        Schema::dropIfExists('tracteurs');
     }
 };

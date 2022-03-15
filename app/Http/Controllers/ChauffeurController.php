@@ -2,12 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chauffeur;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreChauffeurRequest;
 use App\Http\Requests\UpdateChauffeurRequest;
-use App\Models\Chauffeur;
+use App\Models\Tracteur;
 
 class ChauffeurController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +29,8 @@ class ChauffeurController extends Controller
     public function index()
     {
         //
+        $chauffeurs = Chauffeur::all();
+        return view('chauffeurs.listAll', compact('chauffeurs'));
     }
 
     /**
@@ -26,6 +41,8 @@ class ChauffeurController extends Controller
     public function create()
     {
         //
+        $tracteurs = Tracteur::all();
+        return view('chauffeurs.newChauffeur', compact('tracteurs'));
     }
 
     /**
@@ -34,9 +51,22 @@ class ChauffeurController extends Controller
      * @param  \App\Http\Requests\StoreChauffeurRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreChauffeurRequest $request)
+    public function store(Request $request)
     {
         //
+        $data = [
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'numeroCNI' => $request->numeroCNI,
+            'telephone' => $request->telephone,
+            'tracteur_id' => $request->tracteur_id,
+        ];
+
+        // dd($data);
+
+        Chauffeur::create($data);
+
+        return redirect()->route('chauffeurs.index');
     }
 
     /**
@@ -48,6 +78,7 @@ class ChauffeurController extends Controller
     public function show(Chauffeur $chauffeur)
     {
         //
+        return view('chauffeurs.showChauffeur', compact('chauffeur'));
     }
 
     /**
@@ -59,6 +90,8 @@ class ChauffeurController extends Controller
     public function edit(Chauffeur $chauffeur)
     {
         //
+        $tracteurs = Tracteur::all();
+        return view('chauffeurs.editChauffeur', compact('chauffeur', 'tracteurs'));
     }
 
     /**
@@ -68,9 +101,20 @@ class ChauffeurController extends Controller
      * @param  \App\Models\Chauffeur  $chauffeur
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateChauffeurRequest $request, Chauffeur $chauffeur)
+    public function update(Request $request, Chauffeur $chauffeur)
     {
-        //
+        // 
+        $data = [
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'numeroCNI' => $request->numeroCNI,
+            'telephone' => $request->telephone,
+            'tracteur_id' => $request->tracteur_id,
+        ];
+
+        $chauffeur->update($data);
+
+        return redirect()->route('chauffeurs.index');
     }
 
     /**
@@ -82,5 +126,8 @@ class ChauffeurController extends Controller
     public function destroy(Chauffeur $chauffeur)
     {
         //
+        $chauffeur->delete();
+
+        return redirect()->route('chauffeurs.index');
     }
 }

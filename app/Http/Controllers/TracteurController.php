@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class TracteurController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,7 +27,7 @@ class TracteurController extends Controller
     {
         //
         $tracteurs = Tracteur::all();
-        
+
         return view('tracteurs.listAll', compact('tracteurs'));
     }
 
@@ -49,7 +59,7 @@ class TracteurController extends Controller
 
         Tracteur::create($data);
 
-        return redirect()->route('tracteurs.index')->withSuccess('Enregistrement éffectuer avec succès!');
+        return redirect()->route('tracteurs.index');
     }
 
     /**
@@ -94,7 +104,7 @@ class TracteurController extends Controller
 
         $tracteur->update($data);
 
-        return redirect()->route('tracteurs.index')->withSuccess('Mise à jour réussi!');
+        return redirect()->route('tracteurs.index');
     }
 
     /**
@@ -108,6 +118,6 @@ class TracteurController extends Controller
         //
         $tracteur->delete();
 
-        return redirect()->route('tracteurs.index')->withSuccess('Suppression réussi!');
+        return redirect()->route('tracteurs.index');
     }
 }

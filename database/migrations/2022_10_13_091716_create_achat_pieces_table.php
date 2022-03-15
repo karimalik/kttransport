@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tracteurs', function (Blueprint $table) {
+        Schema::create('achat_pieces', function (Blueprint $table) {
             $table->id();
-            $table->string('marque')->unique()->nullable();
-            $table->string('immatriculation')->nullable();
-            $table->string('type')->nullable();
+            $table->string('dateAchat')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('quantite')->nullable();
+            $table->string('prixU')->nullable();
+            $table->string('montantT')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tracteurs');
+        Schema::dropIfExists('achat_pieces');
     }
 };

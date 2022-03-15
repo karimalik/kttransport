@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    KT-Transport : Ajouter un tracteur
+    KT-Transport 
 @endsection
 
 @section('page-header')
@@ -19,21 +19,12 @@
             <div class="page-title">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Tracteurs</li>
+                    <li class="breadcrumb-item active">Chauffeurs</li>
                 </ol>
             </div>
         </div>
     </div>
     <!-- /# column -->
-
-    @if (Session::has('success'))
-    <div class="col-lg-4 p-l-0 title-center">
-        <div class="alert alert-success alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{Session::get('success')}}
-        </div>
-    </div>
-    @endif
 </div>
 <!-- /# row -->
 @endsection
@@ -43,34 +34,40 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-title">
-                <h4>Modification du tracteur <strong>{{ $tracteur->marque }}</strong>.</h4>
+                <h4>Informations sur le chauffeurs {{ $chauffeur->nom }}.</h4>
 
             </div>
             <div class="card-body">
                 <div class="basic-elements">
-                    <form method="POST" action="{{ route('tracteurs.update', $tracteur->id) }}">
+                    <form method="POST" action="#">
                         @csrf
-                        @method('PUT')
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Marque</label>
-                                    <input type="text" class="form-control" name="marque" placeholder="marque" value="{{ $tracteur->marque }}" required>
+                                    <label>Nom</label>
+                                    <input type="text" class="form-control" name="nom" placeholder="Dupont" readonly value="{{ $chauffeur->nom }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Immatriculation</label>
-                                    <input class="form-control" type="text" placeholder="Immatriculation" name="immatriculation" value="{{ $tracteur->immatriculation }}" required>
+                                    <label>Prenom</label>
+                                    <input class="form-control" type="text" placeholder="albert" name="prenom" readonly value="{{ $chauffeur->prenom }}">
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Tracteur</label>
+                                    <input class="form-control" type="text"  name="tracteur_id" readonly value="{{ $chauffeur->tracteur->marque }}">
+                                </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Type</label>
-                                    <input class="form-control" type="text" placeholder="type" name="type" value="{{ $tracteur->type }}" required>
+                                    <label>Numero CNI</label>
+                                    <input class="form-control" type="text" placeholder="78954" name="numeroCNI" readonly value="{{ $chauffeur->numeroCNI }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Telephone</label>
+                                    <input class="form-control" type="text" placeholder="655897415" name="telephone" readonly value="{{ $chauffeur->telephone }}">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-info">Valider</button> &nbsp;&nbsp;
-                            <a href="{{ route('tracteurs.index') }}" class="btn btn-default">retour</a>
+                            <!-- <button type="submit" class="btn btn-success">Valider</button> &nbsp;&nbsp; -->
+                            <a href="{{ route('chauffeurs.index') }}" class="btn btn-default">retour</a>
                         </div>
                     </form>
                 </div>
