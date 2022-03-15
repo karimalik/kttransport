@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-KT-Transport: Listing Carburants
+KT-Transport: Listing Activites
 @endsection
 
 @section('extra-css')
@@ -23,7 +23,7 @@ KT-Transport: Listing Carburants
             <div class="page-title">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Carburants</li>
+                    <li class="breadcrumb-item active">Activite</li>
                 </ol>
             </div>
         </div>
@@ -44,8 +44,7 @@ KT-Transport: Listing Carburants
 
 @section('content')
 <div class="row">
-   &nbsp; &nbsp; <a href="{{ route('carburants.create')}}" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i>Ajouter</a>
-   &nbsp; <a href="{{ route('recherche.index')}}" class="btn btn-secondary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-search"></i>Rechercher</a>
+   &nbsp; &nbsp; <a href="{{ route('activites.create')}}" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i>Ajouter</a>
     <div class="col-lg-12">
         <div class="card">
             <div class="bootstrap-data-table-panel">
@@ -54,27 +53,27 @@ KT-Transport: Listing Carburants
                         <thead>
                             <tr>
                                 <th class="text-center">Date</th>
-                                <th class="text-center">Quantite</th>
-                                <th class="text-center">Montant</th>
-                                <th class="text-center">Marque</th>
+                                <th class="text-center">Site Chargement</th>
+                                <th class="text-center">Site Dechargement</th>
+                                <th class="text-center">Numero Conteneur</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($carburants as $carburant)
+                            @foreach($activites as $activite)
                             <tr>
-                                <td class="text-center"> {{ $carburant->date }} </td>
-                                <td class="text-center">{{ $carburant->quantite }} Litre</td>
-                                <td class="text-center">{{ $carburant->montant }} CFA</td>
-                                <td class="text-center">{{ $carburant->tracteur->marque }}</td>
+                                <td class="text-center"> {{ $activite->date }} </td>
+                                <td class="text-center">{{ $activite->siteChargement }} Litre</td>
+                                <td class="text-center">{{ $activite->siteDechargement }} CFA</td>
+                                <td class="text-center">{{ $activite->numero_conteneur }}</td>
                                 <td class="text-center">
-                                    <form action="{{ route('carburants.destroy', $carburant->id) }}" method="POST">
+                                    <form action="{{ route('activites.destroy', $activite->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
 
-                                        <a href="{{ route('carburants.show', $carburant->id) }}" class="btn btn-warning"><i class="ti-eye"></i></a>
-                                        <a href="{{ route('carburants.edit', $carburant->id) }}" class="btn btn-info"><i class="ti-pencil-alt2"></i></a>
+                                        <a href="{{ route('activites.show', $activite->id) }}" class="btn btn-warning"><i class="ti-eye"></i></a>
+                                        <a href="{{ route('activites.edit', $activite->id) }}" class="btn btn-info"><i class="ti-pencil-alt2"></i></a>
 
                                         <button type="submit" class="btn btn-danger "><i class="ti-trash"></i></button>
                                     </form>

@@ -42,7 +42,7 @@ KT-Transport : Dashboard
                 </div>
                 <div class="stat-content dib">
                     <div class="stat-text">Depense Carburants</div>
-                    <div class="stat-digit">1,012 CFA</div>
+                    <div class="stat-digit"> {{ $depenseCarburant }} CFA</div>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@ KT-Transport : Dashboard
                 </div>
                 <div class="stat-content dib">
                     <div class="stat-text">Depense Achat Piece</div>
-                    <div class="stat-digit">961 CFA</div>
+                    <div class="stat-digit"> {{ $depenseAchat }} CFA</div>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@ KT-Transport : Dashboard
                 </div>
                 <div class="stat-content dib">
                     <div class="stat-text">Depense Panne</div>
-                    <div class="stat-digit">770 CFA</div>
+                    <div class="stat-digit"> {{ $depensePanne }} CFA</div>
                 </div>
             </div>
         </div>
@@ -74,10 +74,10 @@ KT-Transport : Dashboard
     <div class="col-lg-3">
         <div class="card">
             <div class="stat-widget-one">
-                <div class="stat-icon dib"><i class="ti-user color-danger border-danger"></i></div>
+                <div class="stat-icon dib"><i class="ti-truck color-danger border-danger"></i></div>
                 <div class="stat-content dib">
-                    <div class="stat-text">Chauffeurs</div>
-                    <div class="stat-digit">781</div>
+                    <div class="stat-text">Tracteurs</div>
+                    <div class="stat-digit">{{ $tracteur }}</div>
                 </div>
             </div>
         </div>
@@ -85,11 +85,11 @@ KT-Transport : Dashboard
 </div>
 
 <div class="row">
+
     <div class="col-lg-12">
         <div class="card">
             <div class="card-title pr">
                 <h4> <i class="ti-view-list color-info border-info"></i> Liste Carburants</h4>
-
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -106,27 +106,23 @@ KT-Transport : Dashboard
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($results as $result)
                             <tr>
-                                <td>Class Test</td>
-                                <td>Mathmatics</td>
-                                <td>
-                                    4.00
-                                </td>
-                                <td>
-                                    95.00
-                                </td>
-                                <td>
-                                    100
-                                </td>
-                                <td>20/04/2017</td>
-                                <td>20/04/2017</td>
+                                <td>{{ $result->date }}</td>
+                                <td>{{ $result->quantite }} Litre</td>
+                                <td>{{ $result->montant }} CFA</td>
+                                <td>{{ $result->kilometre }} Km</td>
+                                <td>{{ $result->marque }}</td>
+                                <td>{{ $result->periode }}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    &nbsp; &nbsp; <a href="{{ route('carburants.index')}}" class="btn btn-info btn-flat btn-addon m-b-10 m-l-5"><i class="ti-eye"></i>Voir Plus</a>
     <!-- /# column -->
 </div>
 <!-- /# row -->

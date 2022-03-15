@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class RechercheController extends Controller
 {
+    public function __construct() {
+
+        $this->middleware('auth');
+    }
+    
     //
     public function index()
     {
@@ -19,7 +24,7 @@ class RechercheController extends Controller
         $dateD = $request->dateD;
         $dateF = $request->dateF;
 
-        $recherche = DB::table('carburants')
+        $results = DB::table('carburants')
                         ->select('date', 'quantite', 'montant', 'kilometre', 'periode', 'commentaire', 'marque')
                         ->join('tracteurs', 'tracteurs.id', '=', 'carburants.tracteur_id')
                         ->where('date', '>=', $dateD, 'and', 'date', '<=', $dateF)
@@ -27,8 +32,13 @@ class RechercheController extends Controller
         
         $rechercheSum = DB::table('carburants')
                            ->sum('montant');
+                        //    ->where('date', '>=', $dateD, 'and', 'date', '<=', $dateF)
+                        //    ->get();
+
         $sommeT = round($rechercheSum);
+
+        // dd($sommeT);
         
-        dd($sommeT);
+        return view('recherche.result', compact('results', 'sommeT'));
     }
 }

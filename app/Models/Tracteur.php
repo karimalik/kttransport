@@ -24,4 +24,13 @@ class Tracteur extends Model
     {
         $this->hasMany(Carburant::class);
     }
+
+    public function activite()
+    {
+        return $this->hasOne(Activite::class);
+    }
+
+    public function pannes(){
+        return $this->hasOne(Panne::class);
+    }
 }

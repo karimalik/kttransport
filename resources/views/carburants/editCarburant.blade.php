@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-KT-Transport : Ajouter un chauffeur
+KT-Transport : Carburant
 @endsection
 
 @section('page-header')
@@ -19,7 +19,7 @@ KT-Transport : Ajouter un chauffeur
             <div class="page-title">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Chauffeurs</li>
+                    <li class="breadcrumb-item active">Carburant</li>
                 </ol>
             </div>
         </div>

@@ -1428,21 +1428,22 @@ footer p {
   font-size: 12px;
 }
 .title {
-  float: right;
+  float: left;
 }
 .title h4 {
   color: #373757;
-  text-align: right;
+  text-align: left;
 }
 .title p {
-  text-align: right;
+  text-align: left;
   font-size: 12px;
 }
 #project {
-  margin-left: 52%;
+  /* margin-right: 52%; */
+  text-align: center;
 }
 #project p {
-  font-size: 12px;
+  font-size: 16px;
 }
 #invoice-table h2 {
   font-size: 18px;
@@ -1450,6 +1451,10 @@ footer p {
 .tabletitle {
   padding: 5px;
   background: #e7e7e7;
+}
+
+.text-sub {
+  color: #e6e6e6;
 }
 .service {
   border: 1px solid #e7e7e7;

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-KT-Transport
+KT-Transport : Chauffeurs
 @endsection
 
 @section('page-header')

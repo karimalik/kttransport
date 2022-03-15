@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-KT-Transport : Carburant
+KT-Transport : Panne
 @endsection
 
 @section('page-header')
@@ -19,7 +19,7 @@ KT-Transport : Carburant
             <div class="page-title">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Carburant</li>
+                    <li class="breadcrumb-item active">Panne</li>
                 </ol>
             </div>
         </div>
@@ -34,27 +34,28 @@ KT-Transport : Carburant
     <div class="col-lg-12">
         <div class="card">
             <div class="card-title">
-                <h4>Ajout d'une nouvelle consommation.</h4>
+                <h4>Ajouter Une Nouvelle Panne.</h4>
 
             </div>
             <div class="card-body">
                 <div class="basic-elements">
-                    <form method="POST" action="{{ route('carburants.store') }}">
+                    <form method="POST" action="{{ route('pannes.update', $panne->id) }}">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Date</label>
-                                    <input type="date" class="form-control" name="date" required>
+                                    <input type="date" class="form-control" name="date" required value="{{ $panne->date }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>quantite</label>
-                                    <input class="form-control" type="text" name="quantite" required>
+                                    <label>Panne Declare</label>
+                                    <input class="form-control" type="text" name="panneDeclare" required value="{{ $panne->panneDeclare }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Tracteur</label>
                                     <select class="form-control" name="tracteur_id" required>
-                                        <option selected>Choix...</option>
+                                        <option value="{{ $panne->tracteur->id }}"> {{ $panne->tracteur->marque }</option>
                                         @foreach ($tracteurs as $tracteur)
                                         <option value="{{ $tracteur->id }}"> {{ $tracteur->marque }} </option>
                                         @endforeach
@@ -63,24 +64,16 @@ KT-Transport : Carburant
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Kilometre</label>
-                                    <input class="form-control" type="text" name="kilometre" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Periode</label>
-                                    <select class="form-control" name="periode" required>
-                                        <option selected>Choix...</option>
-                                        <option value="matin">Matin</option>
-                                        <option value="soir">Soir</option>
-                                    </select>
+                                    <label>Cout</label>
+                                    <input class="form-control" type="text" name="cout" required value="{{ $panne->cout }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Commentaire</label>
-                                    <textarea class="form-control" rows="10" name="commentaire"></textarea>
+                                    <textarea class="form-control" rows="10" name="commentaire"> {{ $panne->commentaire }} </textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Valider</button> &nbsp;&nbsp;
-                            <a href="{{ route('carburants.index') }}" class="btn btn-default">retour</a>
+                            <!-- <button type="submit" class="btn btn-success">Valider</button> &nbsp;&nbsp; -->
+                            <a href="{{ route('pannes.index') }}" class="btn btn-default">retour</a>
                         </div>
                     </form>
                 </div>

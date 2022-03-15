@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    KT-Transport : Ajouter un tracteur
+    KT-Transport : Tracteur
 @endsection
 
 @section('page-header')

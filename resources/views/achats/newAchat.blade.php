@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    KT-Transport : Chauffeurs
+KT-Transport : Achat Piece
 @endsection
 
 @section('page-header')
@@ -19,7 +19,7 @@
             <div class="page-title">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Chauffeurs</li>
+                    <li class="breadcrumb-item active">Achat Piece</li>
                 </ol>
             </div>
         </div>
@@ -34,40 +34,36 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-title">
-                <h4>Informations sur le chauffeurs {{ $chauffeur->nom }}.</h4>
+                <h4>Nouvelle achat de piece.</h4>
 
             </div>
             <div class="card-body">
                 <div class="basic-elements">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('achats.store') }}">
                         @csrf
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Nom</label>
-                                    <input type="text" class="form-control" name="nom" placeholder="Dupont" readonly value="{{ $chauffeur->nom }}">
+                                    <label>Date</label>
+                                    <input type="date" class="form-control" name="dateAchat" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Prenom</label>
-                                    <input class="form-control" type="text" placeholder="albert" name="prenom" readonly value="{{ $chauffeur->prenom }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Tracteur</label>
-                                    <input class="form-control" type="text"  name="tracteur_id" readonly value="{{ $chauffeur->tracteur->marque }}">
+                                    <label>Designation</label>
+                                    <input class="form-control" type="text" name="designation" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Numero CNI</label>
-                                    <input class="form-control" type="text" placeholder="78954" name="numeroCNI" readonly value="{{ $chauffeur->numeroCNI }}">
+                                    <label>Quantite</label>
+                                    <input class="form-control" type="text" name="quantite" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Telephone</label>
-                                    <input class="form-control" type="text" placeholder="655897415" name="telephone" readonly value="{{ $chauffeur->telephone }}">
+                                    <label>Prix Unitaire</label>
+                                    <input class="form-control" type="text" name="prixU" required>
                                 </div>
                             </div>
-                            <!-- <button type="submit" class="btn btn-success">Valider</button> &nbsp;&nbsp; -->
-                            <a href="{{ route('chauffeurs.index') }}" class="btn btn-default">retour</a>
+                            <button type="submit" class="btn btn-success">Valider</button> &nbsp;&nbsp;
+                            <a href="{{ route('achats.index') }}" class="btn btn-default">retour</a>
                         </div>
                     </form>
                 </div>

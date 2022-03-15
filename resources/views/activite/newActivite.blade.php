@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-KT-Transport : Carburant
+KT-Transport :  Activite
 @endsection
 
 @section('page-header')
@@ -19,7 +19,7 @@ KT-Transport : Carburant
             <div class="page-title">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Carburant</li>
+                    <li class="breadcrumb-item active">Activite</li>
                 </ol>
             </div>
         </div>
@@ -34,12 +34,12 @@ KT-Transport : Carburant
     <div class="col-lg-12">
         <div class="card">
             <div class="card-title">
-                <h4>Ajout d'une nouvelle consommation.</h4>
+                <h4>Ajouter une nouvelle activite.</h4>
 
             </div>
             <div class="card-body">
                 <div class="basic-elements">
-                    <form method="POST" action="{{ route('carburants.store') }}">
+                    <form method="POST" action="{{ route('activites.store') }}">
                         @csrf
                         <div class="row">
                             <div class="col-lg-6">
@@ -48,8 +48,12 @@ KT-Transport : Carburant
                                     <input type="date" class="form-control" name="date" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>quantite</label>
-                                    <input class="form-control" type="text" name="quantite" required>
+                                    <label>Site Chargement</label>
+                                    <input class="form-control" type="text" name="siteChargement" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Heure Chargement</label>
+                                    <input class="form-control" type="time" name="heureChargement" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Tracteur</label>
@@ -60,23 +64,48 @@ KT-Transport : Carburant
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>20 Pieds</label>
+                                    <select class="form-control" name="pieds20" required>
+                                        <option selected>Choix...</option>
+                                        <option value="vide">Vide</option>
+                                        <option value="plein">Plein</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>40 Pieds</label>
+                                    <select class="form-control" name="pieds40" required>
+                                        <option selected>Choix...</option>
+                                        <option value="vide">Vide</option>
+                                        <option value="plein">Plein</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Kilometre</label>
-                                    <input class="form-control" type="text" name="kilometre" required>
+                                    <label>Site Dechargement</label>
+                                    <input class="form-control" type="text" name="siteDechargement" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Periode</label>
-                                    <select class="form-control" name="periode" required>
+                                    <label>Heure Dechargement</label>
+                                    <input class="form-control" type="time" name="heureDechargement" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Chauffeur</label>
+                                    <select class="form-control" name="chauffeur_id" required>
                                         <option selected>Choix...</option>
-                                        <option value="matin">Matin</option>
-                                        <option value="soir">Soir</option>
+                                        @foreach ($chauffeurs as $chauffeur)
+                                        <option value="{{ $chauffeur->id }}">{{ $chauffeur->nom }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Commentaire</label>
                                     <textarea class="form-control" rows="10" name="commentaire"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Numero Conteneur</label>
+                                    <input class="form-control" type="text" name="numero_conteneur" required>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success">Valider</button> &nbsp;&nbsp;

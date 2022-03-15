@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('pieds20')->nullable();
             $table->string('pieds40')->nullable();
+            // $table->string('remorque')->nullable();
             $table->string('siteChargement')->nullable();
             $table->string('siteLivraison')->nullable();
             $table->string('heureChargement')->nullable();

@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\CarburantController;
+use App\Http\Controllers\AchatPieceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PanneController;
+use App\Http\Controllers\ActiviteController;
 use App\Http\Controllers\TracteurController;
+use App\Http\Controllers\CarburantController;
 use App\Http\Controllers\ChauffeurController;
 
 
@@ -31,6 +34,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('tracteurs', TracteurController::class);
     Route::resource('chauffeurs', ChauffeurController::class);
     Route::resource('carburants', CarburantController::class);
+    Route::resource('activites', ActiviteController::class);
+    Route::resource('pannes', PanneController::class);
+    Route::resource('achats', AchatPieceController::class);
 });
 
 

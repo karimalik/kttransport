@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-KT-Transport : Carburant
+KT-Transport : Panne
 @endsection
 
 @section('page-header')
@@ -19,7 +19,7 @@ KT-Transport : Carburant
             <div class="page-title">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Carburant</li>
+                    <li class="breadcrumb-item active">Panne</li>
                 </ol>
             </div>
         </div>
@@ -34,12 +34,12 @@ KT-Transport : Carburant
     <div class="col-lg-12">
         <div class="card">
             <div class="card-title">
-                <h4>Ajout d'une nouvelle consommation.</h4>
+                <h4>Ajouter Une Nouvelle Panne.</h4>
 
             </div>
             <div class="card-body">
                 <div class="basic-elements">
-                    <form method="POST" action="{{ route('carburants.store') }}">
+                    <form method="POST" action="{{ route('pannes.store') }}">
                         @csrf
                         <div class="row">
                             <div class="col-lg-6">
@@ -48,8 +48,8 @@ KT-Transport : Carburant
                                     <input type="date" class="form-control" name="date" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>quantite</label>
-                                    <input class="form-control" type="text" name="quantite" required>
+                                    <label>Panne Declare</label>
+                                    <input class="form-control" type="text" name="panneDeclare" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Tracteur</label>
@@ -63,16 +63,8 @@ KT-Transport : Carburant
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label>Kilometre</label>
-                                    <input class="form-control" type="text" name="kilometre" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Periode</label>
-                                    <select class="form-control" name="periode" required>
-                                        <option selected>Choix...</option>
-                                        <option value="matin">Matin</option>
-                                        <option value="soir">Soir</option>
-                                    </select>
+                                    <label>Cout</label>
+                                    <input class="form-control" type="text" name="cout" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Commentaire</label>
@@ -80,7 +72,7 @@ KT-Transport : Carburant
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success">Valider</button> &nbsp;&nbsp;
-                            <a href="{{ route('carburants.index') }}" class="btn btn-default">retour</a>
+                            <a href="{{ route('chauffeurs.index') }}" class="btn btn-default">retour</a>
                         </div>
                     </form>
                 </div>
