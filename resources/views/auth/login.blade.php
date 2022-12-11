@@ -62,12 +62,11 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="checkbox">
+                                <!-- <div class="checkbox">
                                     <label>
 										<input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> Se Souvenir de moi
 									</label>
-
-                                </div>
+                                </div> -->
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
                             </form>
                         </div>

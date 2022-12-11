@@ -12,7 +12,7 @@ class RechercheController extends Controller
 
         $this->middleware('auth');
     }
-    
+
     //
     public function index()
     {
@@ -29,16 +29,13 @@ class RechercheController extends Controller
                         ->join('tracteurs', 'tracteurs.id', '=', 'carburants.tracteur_id')
                         ->where('date', '>=', $dateD, 'and', 'date', '<=', $dateF)
                         ->get();
-        
-        $rechercheSum = DB::table('carburants')
-                           ->sum('montant');
-                        //    ->where('date', '>=', $dateD, 'and', 'date', '<=', $dateF)
-                        //    ->get();
 
-        $sommeT = round($rechercheSum);
+        $rechercheSum = DB::table('carburants')
+                           ->where('date', '>=', $dateD, 'and', 'date', '<=', $dateF)
+                           ->sum('montant');
 
         // dd($sommeT);
-        
-        return view('recherche.result', compact('results', 'sommeT'));
+
+        return view('recherche.result', compact('results', 'rechercheSum'));
     }
 }
