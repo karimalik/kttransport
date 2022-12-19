@@ -27,11 +27,11 @@ class RechercheController extends Controller
         $results = DB::table('carburants')
                         ->select('date', 'quantite', 'montant', 'kilometre', 'periode', 'commentaire', 'marque')
                         ->join('tracteurs', 'tracteurs.id', '=', 'carburants.tracteur_id')
-                        ->where('date', '>=', $dateD, 'and', 'date', '<=', $dateF)
+                        ->whereBetween('date', [$dateD, $dateF])
                         ->get();
 
         $rechercheSum = DB::table('carburants')
-                           ->where('date', '>=', $dateD, 'and', 'date', '<=', $dateF)
+                           ->whereBetween('date', [$dateD, $dateF])
                            ->sum('montant');
 
         // dd($sommeT);
